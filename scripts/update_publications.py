@@ -14,6 +14,34 @@ BEGIN = "<!--BEGIN_AUTO_PUBLICATIONS-->"
 END = "<!--END_AUTO_PUBLICATIONS-->"
 INDEX_MD_PATH = "index.md"
 
+# Optional cleanup: convert console lines into clean markdown bullets
+clean_lines = []
+for line in output.splitlines():
+    line = line.strip()
+    if not line:
+        continue
+    # keep only “done” entries
+    if line.startswith("[done]"):
+        # Example format:
+        # [done] id=... | ‘Title’ DOI: ... URL: ...
+        # Convert to:
+        # - **Title**  \n  https://doi.org/...  (or URL)
+        m = re.search(r"\|\s*[‘'](.+?)[’']\s+DOI:\s*([0-9.\/A-Za-z]+)\s+URL:\s*(\S+)", line)
+        if m:
+            title, doi, url = m.group(1), m.group(2), m.group(3)
+            link = f"https://doi.org/{doi}" if doi else url
+            clean_lines.append(f"- **{title}**  \n  {link}")
+        else:
+            # fallback: keep the line if it doesn't match
+            clean_lines.append(f"- {line}")
+    else:
+        # drop non-publication chatter
+        pass
+
+pretty = "\n".join(clean_lines) if clean_lines else output
+inject_into_index(pretty)
+
+
 def inject_into_index(markdown_block: str):
     with open(INDEX_MD_PATH, "r", encoding="utf-8") as f:
         text = f.read()
