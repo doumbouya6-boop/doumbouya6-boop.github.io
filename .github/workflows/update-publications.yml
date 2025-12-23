@@ -17,7 +17,7 @@ jobs:
 
       - run: pip install requests
 
-      - run: python update_publications.py
+      - run: python scripts/update_publications.py
 
       - name: Commit changes (if any)
         run: |
