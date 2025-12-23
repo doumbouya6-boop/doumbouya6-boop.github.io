@@ -3,11 +3,8 @@
 Independent researcher working on **structure-first physics**, admissible paths, and the limits of experimental test regimes.  
 My work focuses on geometry, temporal structure, and persistence as prior constraints on physical law.
 
-**ORCID:** https://orcid.org/XXXX-XXXX-XXXX-XXXX  
-**Zenodo (complete record):**  
-https://zenodo.org/search?q=metadata.creators.person_or_org.name:"Doumbouya, Lisa"
-
-> *Note: Zenodo author search results may include records by authors with similar names.*
+**ORCID:** https://orcid.org/0009-0000-8411-5451 
+**Zenodo (complete record):**  https://zenodo.org/records/17918200
 
 ---
 
@@ -107,6 +104,7 @@ For framework-level discussion, see *Structure Before Force* (2025).
 
 <!--BEGIN_AUTO_PUBLICATIONS-->
 <!--END_AUTO_PUBLICATIONS-->
+
 
 
 
