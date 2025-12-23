@@ -5,6 +5,9 @@ on:
     - cron: "17 3 * * *"   # daily at ~03:17 UTC
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +20,10 @@ jobs:
 
       - run: pip install requests
 
-      - run: python scripts/update_publications.py
+      - name: Run updater
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: python scripts/update_publications.py
 
       - name: Commit changes (if any)
         run: |
